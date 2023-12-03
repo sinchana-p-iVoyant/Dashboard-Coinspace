@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import { Card, Input, Avatar, Badge } from 'antd'
 import { BsFilterRight } from "react-icons/bs";
 import { IoCubeOutline } from "react-icons/io5";
@@ -7,7 +7,7 @@ import { HiOutlineSpeakerphone } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
 import './HeaderComponent.css'
 
-export const HeaderComponent = () => {
+export const HeaderComponent: React.FC = () => {
   return (
     <Card>
       <div className="header-container">
