@@ -24,7 +24,7 @@ import React from 'react';
 type MenuItem = {
   label: string;
   key: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   children?: MenuItem[];
 }
 
