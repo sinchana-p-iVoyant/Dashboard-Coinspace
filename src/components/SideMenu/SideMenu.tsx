@@ -19,15 +19,133 @@ import { FaPowerOff } from "react-icons/fa6";
 // import type { MenuTheme } from 'antd';
 
 import './SideMenu.css'
+import React from 'react';
 
-export const SideMenu = () => {
-  // const [theme, setTheme] = useState<MenuTheme>('dark');
+type MenuItem = {
+  label: string;
+  key: string;
+  icon: JSX.Element;
+  children?: MenuItem[];
+}
+
+// type SideMenuProps = {}
+// type SideMenuProps = Record<string, never>;
+
+export const SideMenu: React.FC = () => {
   console.log("Sidemenu")
+  // const [theme, setTheme] = useState<MenuTheme>('dark');
   
   // const changeTheme = (value: boolean) => {
   //   setTheme(value ? 'dark' : 'light');
   // };
 
+
+  const menuItems: MenuItem[] = [
+    {
+      label: "Dashboard",
+      key:"dashboard",
+      icon: <AiFillHome size={21} />
+    },
+    {
+      label: "Exchange",
+      key:"exchange",
+      icon: <RiExchangeFill size={21} />
+    },
+    {
+      label: "My Wallet",
+      key:"mywallet",
+      icon: <SlWallet size={21} />
+    },
+    {
+      label: "Tradeview",
+      key:"tradeview",
+      icon: <BsGraphUpArrow size={21} />
+    }]
+  
+  const serviceItems: MenuItem[] = [
+    {
+      label: "Transactions",
+      // tag: 3,
+      key:"transactions",
+      icon: <BsBank2 size={21}/> ,                  
+      children: [
+        {
+          label: "Buy & Sell Coin",
+          key: "buyandsellcoin",
+        },
+        {
+          label: "Deposit Yen",
+          key: "deposityen",
+        },
+        {
+          label: "withdraw Yen",
+          key: "withdrawyen",
+        },
+        {
+          label: "Send Coin",
+          key: "sendcoin",
+        },
+        {
+          label: "Receive Coin",
+          key: "receivecoin",
+        },
+        {
+          label: "Deposit Coin",
+          key: "depositcoin",
+        },
+      ]
+    },
+    {
+      label: "Rewards",
+      key: "rewards",
+      icon: <FaGift size={21}/>,
+      children: [
+        {
+          label: "Rewards",
+          key: "reward",
+        }
+      ]
+    },
+    {
+      label: "Utility Plan",
+      key: "utilityplan",
+      icon: <TbBulb size={21}/>,
+      children: [
+        {
+          key: "plan",
+          label: "Plan"
+        }
+      ]
+    }                 
+  ]
+
+  const accountItems: MenuItem[] = [
+    {
+      label: "Notification",
+      key: "notification",
+      icon: <HiOutlineSpeakerphone size={21} />
+    },
+    {
+      label: "Settings",
+      key: "settings",
+      icon: <IoSettingsOutline size={21}/>
+      ,
+    },
+    {
+      label: "FAQ",
+      key: "faq",
+      icon: <FaRegQuestionCircle size={21}/>
+    }
+  ]
+
+  const logoutItem: MenuItem[] = [
+    {
+      key: "logout",
+      label: "Log Out",
+      // icon: <FaPowerOff size={21} style={{ strokeWidth: 1, stroke: 'black', fill: 'none' }} />
+      icon: <FaPowerOff size={21} />
+    }
+  ]
   
   return (
         <Sider 
@@ -59,28 +177,7 @@ export const SideMenu = () => {
                 className='quick-access-menu'
                 // style = {{ width: 200 }}
                 // style={{ backgroundColor: "#001529" }}
-                items = {[
-                  {
-                    label: "Dashboard",
-                    key:"dashboard",
-                    icon: <AiFillHome size={21} />
-                  },
-                  {
-                    label: "Exchange",
-                    key:"exchange",
-                    icon: <RiExchangeFill size={21} />
-                  },
-                  {
-                    label: "My Wallet",
-                    key:"mywallet",
-                    icon: <SlWallet size={21} />
-                  },
-                  {
-                    label: "Tradeview",
-                    key:"tradeview",
-                    icon: <BsGraphUpArrow size={21} />
-                  },
-                ]}
+                items = {menuItems}
               >
 
               </Menu>
@@ -96,63 +193,7 @@ export const SideMenu = () => {
                 // theme="dark"
                 className='service-menu'
                 // style={{ backgroundColor: "#001529" }}
-                items = {[
-                  {
-                    label: "Transactions",
-                    // tag: 3,
-                    key:"transactions",
-                    icon: <BsBank2 size={21}/> ,                  
-                    children: [
-                      {
-                        label: "Buy & Sell Coin",
-                        key: "buyandsellcoin",
-                      },
-                      {
-                        label: "Deposit Yen",
-                        key: "deposityen",
-                      },
-                      {
-                        label: "withdraw Yen",
-                        key: "withdrawyen",
-                      },
-                      {
-                        label: "Send Coin",
-                        key: "sendcoin",
-                      },
-                      {
-                        label: "Receive Coin",
-                        key: "receivecoin",
-                      },
-                      {
-                        label: "Deposit Coin",
-                        key: "depositcoin",
-                      },
-                    ]
-                  },
-                  {
-                    label: "Rewards",
-                    key: "rewards",
-                    icon: <FaGift size={21}/>,
-                    children: [
-                      {
-                        label: "Rewards",
-                        key: "reward",
-                      }
-                    ]
-                  },
-                  {
-                    label: "Utility Plan",
-                    key: "utilityplan",
-                    icon: <TbBulb size={21}/>,
-                    children: [
-                      {
-                        key: "plan",
-                        label: "Plan"
-                      }
-                    ]
-                  }
-                  
-                ]}
+                items = {serviceItems}
               >
               </Menu>
             </div>
@@ -167,24 +208,7 @@ export const SideMenu = () => {
                 // theme='dark'
                 className='account-menu'
                 // style={{ backgroundColor: "#001529" }}
-                  items = {[
-                    {
-                      label: "Notification",
-                      key: "notification",
-                      icon: <HiOutlineSpeakerphone size={21} />
-                    },
-                    {
-                      label: "Settings",
-                      key: "settings",
-                      icon: <IoSettingsOutline size={21}/>
-                      ,
-                    },
-                    {
-                      label: "FAQ",
-                      key: "faq",
-                      icon: <FaRegQuestionCircle size={21}/>
-                    }
-                  ]}
+                  items = {accountItems}
                 >
                 </Menu>
               </div>
@@ -197,14 +221,7 @@ export const SideMenu = () => {
               // theme='dark'
               className='logout-menu'
               // style={{ backgroundColor: "#001529" }}
-              items = {[
-                {
-                  key: "logout",
-                  label: "Log Out",
-                  // icon: <FaPowerOff size={21} style={{ strokeWidth: 1, stroke: 'black', fill: 'none' }} />
-                  icon: <FaPowerOff size={21} />
-                }
-              ]}
+              items = {logoutItem}
             >
             </Menu>
             
